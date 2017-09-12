@@ -1,3 +1,10 @@
+spool_d=200;
+spool_h=70;
+spool_hole=52;
+spool_clr=10; // clearance from floor level
+
+clearance=0.5;  // contact surface clearance
+
 h_bottom=2;
 d_bottom=20;
 
@@ -11,6 +18,8 @@ h_hole1=15; // 1st hole height
 
 d_hole2=d_hole1;
 h_hole2=20; // 2nd hole height
+
+feet_distance=50;
 
 module foot()
 {
@@ -38,4 +47,31 @@ module foot()
   }
 }
 
-foot();
+module spool()
+{
+  translate([0,0,spool_d/2+spool_clr])
+  rotate([90,0,0])
+    difference()
+    {
+      cylinder(d=spool_d,h=spool_h,$fn=32,center=true);
+      cylinder(d=spool_hole,h=spool_h+0.01,$fn=32,center=true);
+    }
+}
+
+
+module four_feet()
+{
+  for(i=[-1:2:1])
+    for(j=[-1:2:1])
+    {
+      // the feet
+      translate([feet_distance*i,(spool_h/2+d_top/2+clearance)*j,0])
+        foot();
+      // the rods
+      // translate([
+    }
+}
+
+// foot();
+% spool();
+four_feet();
