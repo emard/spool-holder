@@ -1,7 +1,7 @@
 spool_d=200;
 spool_h=70;
 spool_hole=52;
-spool_above=10; // clearance from floor level
+spool_above=9; // clearance from floor level
 
 clearance=0.5;  // contact surface clearance
 
