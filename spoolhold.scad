@@ -26,8 +26,10 @@ d1_kuglager=5;
 h_kuglager=4;
 
 d_rod=3; // M3 threaded rod diameter
-h_rod=[spool_h+2*d_top+10,
-       feet_distance+2*d_top+10];
+l_rod=[spool_h+2*d_top+10,
+       feet_distance+d_top+10];
+h_rod=[h_hole1,h_hole2];
+distance_rod=[feet_distance,spool_h+d_top+2*clearance];
 
 module foot()
 {
@@ -90,9 +92,9 @@ module four_feet()
       // the rods
       // translate([20*i,10*j,0])
       rotate([0,0,45+45*j])
-        translate([20*i,0,0])
+        translate([distance_rod[(j+1)/2]/2*i,0,h_rod[(j+1)/2]])
           rotate([90,0,0])
-          %cylinder(d=d_rod,h=h_rod[(j+1)/2],$fn=16,center=true);
+          %cylinder(d=d_rod,h=l_rod[(j+1)/2],$fn=16,center=true);
       // translate([
     }
 }
