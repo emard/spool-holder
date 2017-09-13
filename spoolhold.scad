@@ -25,11 +25,14 @@ d2_kuglager=11;
 d1_kuglager=5;
 h_kuglager=4;
 
+l_rod_over=10;
 d_rod=3; // M3 threaded rod diameter
-l_rod=[spool_h+2*d_top+10,
-       feet_distance+d_top+10];
+l_rod=[spool_h+2*d_top+l_rod_over,
+       feet_distance+d_top+l_rod_over];
 h_rod=[h_hole1,h_hole2];
 distance_rod=[feet_distance,spool_h+d_top+2*clearance];
+
+echo(l_rod);
 
 module foot()
 {
