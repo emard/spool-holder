@@ -21,6 +21,14 @@ h_hole2=20; // 2nd hole height
 
 feet_distance=100;
 
+d2_kuglager=11;
+d1_kuglager=5;
+h_kuglager=4;
+
+d_rod=3; // M3 threaded rod diameter
+h_rod=[spool_h+2*d_top+10,
+       feet_distance+2*d_top+10];
+
 module foot()
 {
   difference()
@@ -53,11 +61,19 @@ module spool()
   rotate([90,0,0])
     difference()
     {
-      cylinder(d=spool_d,h=spool_h,$fn=32,center=true);
+      cylinder(d=spool_d,h=spool_h,$fn=64,center=true);
       cylinder(d=spool_hole,h=spool_h+0.01,$fn=32,center=true);
     }
 }
 
+module kuglager()
+{
+    difference()
+    {
+      cylinder(d=d2_kuglager,h=h_kuglager,$fn=32,center=true);
+      cylinder(d=d1_kuglager,h=h_kuglager+0.001,$fn=32,center=true);
+    }
+}
 
 module four_feet()
 {
@@ -67,7 +83,16 @@ module four_feet()
       // the feet
       translate([feet_distance/2*i,(spool_h/2+d_top/2+clearance)*j,0])
         foot();
+      // kuglager's
+      translate([feet_distance/2*i,(spool_h/2-clearance-h_kuglager/2)*j,h_hole1])
+        rotate([90,0,0])
+        %kuglager();
       // the rods
+      // translate([20*i,10*j,0])
+      rotate([0,0,45+45*j])
+        translate([20*i,0,0])
+          rotate([90,0,0])
+          %cylinder(d=d_rod,h=h_rod[(j+1)/2],$fn=16,center=true);
       // translate([
     }
 }
