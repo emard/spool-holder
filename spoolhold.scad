@@ -1,12 +1,12 @@
 spool_d=200;
 spool_h=70;
 spool_hole=52;
-spool_above=9; // clearance from floor level
+spool_above=5; // clearance from floor level
 
 clearance=0.5;  // contact surface clearance
 
 h_bottom=2;
-d_bottom=20;
+d_bottom=12;
 
 h_mid=3;
 
@@ -19,7 +19,7 @@ h_hole1=15; // 1st hole height
 d_hole2=d_hole1;
 h_hole2=20; // 2nd hole height
 
-feet_distance=100;
+feet_distance=110;
 
 d2_kuglager=11;
 d1_kuglager=5;
@@ -31,6 +31,8 @@ l_rod=[spool_h+2*d_top+l_rod_over,
        feet_distance+d_top+l_rod_over];
 h_rod=[h_hole1,h_hole2];
 distance_rod=[feet_distance,spool_h+d_top+2*clearance];
+
+spacer_clearance=0.3; // inner/outer diameter clearance
 
 echo(l_rod);
 
@@ -80,6 +82,22 @@ module kuglager()
     }
 }
 
+module spacer()
+{
+  difference()
+  {
+    union()
+    {
+      // fits inside of kuglager
+      cylinder(d=d1_kuglager-spacer_clearance,h=h_kuglager/3+clearance,$fn=32,center=true);
+      // stands outside of kuglager
+      translate([0,0,clearance/2-(h_kuglager/3+clearance)/2])
+        cylinder(d=d1_kuglager+clearance,h=clearance,$fn=32,center=true);
+    }
+    cylinder(d=d_rod+spacer_clearance,h=h_kuglager/3+clearance+0.01,$fn=32,center=true);
+  }
+}
+
 module four_feet()
 {
   for(i=[-1:2:1])
@@ -89,7 +107,7 @@ module four_feet()
       translate([feet_distance/2*i,(spool_h/2+d_top/2+clearance)*j,0])
         foot();
       // kuglager's
-      translate([feet_distance/2*i,(spool_h/2-clearance-h_kuglager/2)*j,h_hole1])
+      translate([feet_distance/2*i,(spool_h/2-h_kuglager/2)*j,h_hole1])
         rotate([90,0,0])
         %kuglager();
       // the rods
@@ -103,5 +121,6 @@ module four_feet()
 }
 
 // foot();
+spacer();
 % spool();
 four_feet();
