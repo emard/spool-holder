@@ -9,7 +9,7 @@ foot_sides=4;
 foot_rotate=90+180/foot_sides;
 
 h_bottom=2;
-d_bottom=15;
+d_bottom=10;
 
 h_mid=3;
 
@@ -35,7 +35,8 @@ l_rod=[spool_h+2*d_top+l_rod_over,
 h_rod=[h_hole1,h_hole2];
 distance_rod=[feet_distance,spool_h+d_top+2*clearance];
 
-spacer_clearance=0.3; // inner/outer diameter clearance
+spacer_inner_clearance=0.5; // inner/outer diameter clearance
+spacer_outer_clearance=0.0;
 
 echo(l_rod);
 
@@ -92,12 +93,13 @@ module spacer()
     union()
     {
       // fits inside of kuglager
-      cylinder(d=d1_kuglager-spacer_clearance,h=h_kuglager/3+clearance,$fn=32,center=true);
+      cylinder(d=d1_kuglager-spacer_outer_clearance,h=h_kuglager/3+clearance,$fn=32,center=true);
       // spacer rim outside of kuglager
       translate([0,0,clearance/2-(h_kuglager/3+clearance)/2])
         cylinder(d=d1_kuglager+2*clearance,h=clearance,$fn=32,center=true);
     }
-    cylinder(d=d_rod+spacer_clearance,h=h_kuglager/3+clearance+0.01,$fn=32,center=true);
+    // hole for the rod
+    cylinder(d=d_rod+spacer_inner_clearance,h=h_kuglager/3+clearance+0.01,$fn=32,center=true);
   }
 }
 
@@ -135,8 +137,33 @@ module kuglager_assembly()
 
 }
 
+module all_feet()
+{
+  for(i=[0:3])
+  {
+  translate([(i-1.5)*d_bottom*1.5,0,0])
+  foot();
+  }
+}
+
+module all_spacers()
+{
+  for(i=[0:7])
+  {
+  translate([(i-3.5)*d_bottom*0.75,d_bottom,(h_kuglager/3+clearance)/2])
+    spacer();
+  }
+}
+
+module full_assembly()
+{
+  % spool();
+  four_feet();
+}
 // foot();
 // spacer();
 
-% spool();
-four_feet();
+all_spacers();
+all_feet();
+// full_assembly();
+
