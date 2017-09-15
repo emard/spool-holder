@@ -7,3 +7,4 @@ Parametrized in order to adapt for any bearing and
 threaded rod size.
 
 ![Assembly](pic/assembly.png)
+![Closeup](pic/closeup.png)
