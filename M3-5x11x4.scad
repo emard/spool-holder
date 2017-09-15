@@ -24,10 +24,8 @@ h_mid=3;
 h_top=20;
 d_top=10;
 
-d_hole1=3.5; // hole diameter
-h_hole1=15; // 1st hole height
 
-d_hole2=d_hole1;
+h_hole1=15; // 1st hole height
 h_hole2=20; // 2nd hole height
 
 feet_distance=110;
@@ -45,8 +43,11 @@ l_rod=[spool_h+2*d_top+l_rod_over,
 h_rod=[h_hole1,h_hole2];
 distance_rod=[feet_distance,spool_h+d_top+2*clearance];
 
-spacer_inner_clearance=0.5; // inner/outer diameter clearance
-spacer_outer_clearance=0.0;
+spacer_inner_clearance=0.5; // rod clearance
+spacer_outer_clearance=0.0; // bearing clearance
+
+d_hole1=d_rod+spacer_inner_clearance; // hole diameter
+d_hole2=d_hole1;
 
 echo(l_rod);
 

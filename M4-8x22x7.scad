@@ -24,11 +24,8 @@ h_mid=3;
 h_top=25;
 d_top=10;
 
-d_hole1=3.5; // hole diameter
-h_hole1=15; // 1st hole height
-
-d_hole2=d_hole1;
-h_hole2=20; // 2nd hole height
+h_hole1=15; // 1st rod hole height
+h_hole2=20; // 2nd rod hole height
 
 feet_distance=110;
 
@@ -47,6 +44,10 @@ distance_rod=[feet_distance,spool_h+d_top+2*clearance];
 
 spacer_inner_clearance=0.5; // inner/outer diameter clearance
 spacer_outer_clearance=0.0;
+
+// rod holes diameters
+d_hole1=d_rod+spacer_inner_clearance;
+d_hole2=d_hole1;
 
 echo(l_rod);
 
