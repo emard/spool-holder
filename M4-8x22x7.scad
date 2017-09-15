@@ -38,7 +38,7 @@ d2_kuglager=22;
 h_kuglager=7;
 
 // threaded rod dimensions
-d_rod=4; // M3 threaded rod diameter
+d_rod=4; // M4 threaded rod diameter
 l_rod_over=10;
 l_rod=[spool_h+2*d_top+l_rod_over,
        feet_distance+d_top+l_rod_over];
