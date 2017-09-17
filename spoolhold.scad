@@ -111,7 +111,7 @@ module all_spacers()
   for(i=[0:3])
   {
   for(j=[-1:2:1])
-  translate([(i-1.5)*(d_bottom),d_bottom*j,(h_kuglager/3+clearance)/2])
+  translate([(i-1.5)*(1.5*d_bottom),d_bottom*j,(h_kuglager/3+clearance)/2])
     spacer();
   }
 }
