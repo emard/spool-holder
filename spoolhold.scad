@@ -108,9 +108,10 @@ module all_feet()
 
 module all_spacers()
 {
-  for(i=[0:7])
+  for(i=[0:3])
   {
-  translate([(i-3.5)*d_bottom*0.75,d_bottom,(h_kuglager/3+clearance)/2])
+  for(j=[-1:2:1])
+  translate([(i-1.5)*(d_bottom),d_bottom*j,(h_kuglager/3+clearance)/2])
     spacer();
   }
 }
