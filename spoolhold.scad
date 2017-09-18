@@ -54,7 +54,7 @@ module spacer()
     {
       // fits inside of kuglager
       if(d1_kuglager-spacer_outer_clearance-d_rod-spacer_inner_clearance >
-0.8)
+0.1)
 
 cylinder(d=d1_kuglager-spacer_outer_clearance,h=h_kuglager/3+spacer_rim_h,$fn=32,center=true);
       // spacer rim outside of kuglager
