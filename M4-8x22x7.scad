@@ -42,7 +42,7 @@ l_rod=[spool_h+2*d_top+l_rod_over,
 h_rod=[h_hole1,h_hole2];
 distance_rod=[feet_distance,spool_h+d_top+2*clearance];
 
-spacer_inner_clearance=0.5; // inner/outer diameter clearance
+spacer_inner_clearance=0.4; // inner/outer diameter clearance
 spacer_outer_clearance=0.0;
 spacer_rim_h=0.9;
 
