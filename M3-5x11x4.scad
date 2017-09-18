@@ -45,6 +45,7 @@ distance_rod=[feet_distance,spool_h+d_top+2*clearance];
 
 spacer_inner_clearance=0.5; // rod clearance
 spacer_outer_clearance=0.0; // bearing clearance
+spacer_rim_h=0.5;
 
 d_hole1=d_rod+spacer_inner_clearance; // hole diameter
 d_hole2=d_hole1;

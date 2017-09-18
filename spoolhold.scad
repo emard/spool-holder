@@ -53,13 +53,17 @@ module spacer()
     union()
     {
       // fits inside of kuglager
-      cylinder(d=d1_kuglager-spacer_outer_clearance,h=h_kuglager/3+clearance,$fn=32,center=true);
+      if(d1_kuglager-spacer_outer_clearance-d_rod-spacer_inner_clearance >
+0.8)
+
+cylinder(d=d1_kuglager-spacer_outer_clearance,h=h_kuglager/3+spacer_rim_h,$fn=32,center=true);
       // spacer rim outside of kuglager
-      translate([0,0,clearance/2-(h_kuglager/3+clearance)/2])
-        cylinder(d=d1_kuglager+2*clearance,h=clearance,$fn=32,center=true);
+      if(spacer_rim_h > 0.01)
+      translate([0,0,spacer_rim_h/2-(h_kuglager/3+spacer_rim_h)/2])
+        cylinder(d=d1_kuglager+2*clearance,h=spacer_rim_h,$fn=32,center=true);
     }
     // hole for the rod
-    cylinder(d=d_rod+spacer_inner_clearance,h=h_kuglager/3+clearance+0.01,$fn=32,center=true);
+    cylinder(d=d_rod+spacer_inner_clearance,h=h_kuglager/3+spacer_rim_h+0.01,$fn=32,center=true);
   }
 }
 
@@ -111,7 +115,7 @@ module all_spacers()
   for(i=[0:3])
   {
   for(j=[-1:2:1])
-  translate([(i-1.5)*(1.5*d_bottom),d_bottom*j,(h_kuglager/3+clearance)/2])
+  translate([(i-1.5)*(1.5*d_bottom),d_bottom*j,(h_kuglager/3+spacer_rim_h)/2])
     spacer();
   }
 }
